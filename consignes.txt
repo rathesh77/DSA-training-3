@@ -1,0 +1,30 @@
+Créer une class Trie (signifie arbre préfixe) qui contient un attribut Node root.
+Code exemple d'un Node en python :
+    class Node:
+        def __init__(self):
+            self.children = {}
+ 
+La base pour la class Trie
+    class Trie:
+        def __init__(self):
+            self.root = Node()
+        def search(self, word):
+            #TODO
+        def insert(self, word):
+            #TODO                
+        def collectAllWords(self, node=None, word="", words=[]):
+            #TODO
+        def autocomplete(self, prefix):
+
+            currentNode = self.search(prefix)
+            if not currentNode:
+                return None
+            return self.collectAllWords(currentNode)
+ 
+Les méthodes à développer :
+    - insert(word)
+        ajoute le mot dans la structure de donnée, et une * à la fin du mot.
+    - search(word)
+        cherche le mot dans la structure de donnée, renvoie null si non trouvé, ou la node de la dernière lettre du mot en question
+    - collectAllWords(node=None, word="", words=[])
+        parcours récursivement l'arbre à partir de node et stock dans words les différents mots trouvés (word est init à "" et stock les caractères que l'on croise au fur et à mesure qu'on recurse)
