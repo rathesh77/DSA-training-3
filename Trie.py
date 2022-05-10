@@ -21,30 +21,24 @@ class Trie:
                     if w != None:
                         return w
                 break
-        
         return None
         
-    
     def insert(self, word):
         i = 0
         ptr = self
-       
         while (i < len(word)):
             if word[i] in ptr.root.children:
                 ptr = ptr.root.children[word[i]]
                 i+=1
             else:
                 break
-
         while i < len(word):
             ptr.root.children[word[i]] = Trie()
             ptr = ptr.root.children[word[i]]
             i+=1
         ptr.end = '*'
-        
-  
         return ptr
-        
+     
     def collectAllWords(self, node=None, word="", words=[]):
         #TODO
         ptr = node
