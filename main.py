@@ -13,8 +13,12 @@ res2 = T.insert('alarme')
 
 res2 = T.insert('toto')
 res2 = T.insert('alr')
+res2 = T.insert('rater')
+res2 = T.insert('armurier')
 
 print('fini')
 collects = T.collectAllWords()
 autocomplete = T.autocomplete('arm')
+
+res2 = T.search('rat')
 print('fini')

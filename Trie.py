@@ -32,16 +32,16 @@ class Trie:
         
     
     def insert(self, word):
-        i = len(word)-1
+        i = 0
         ptr = self
        
-        while (i >= 0):
-            look_up = ptr.search(slice(word, 0, i))
-            if look_up != None:
-                ptr = look_up
+        while (i < len(word)):
+            if word[i] in ptr.root.children:
+                ptr = ptr.root.children[word[i]]
+                i+=1
+            else:
                 break
-            i-= 1
-        i = i +1 
+
         while i < len(word):
             ptr.root.children[word[i]] = Trie()
             ptr = ptr.root.children[word[i]]
