@@ -5,12 +5,16 @@ from Node import *
 T = Trie()
 
 #T.insert('salut les amis')
-T.root.children['a'] = Trie()
-T.root.children['a'].root.children['b'] = Trie()
-T.root.children['a'].root.children['c'] = Trie()
 
-T.root.children['a'].root.children['c'].root.children['d'] = Trie()
 
-res = T.search('e')
 res2 = T.insert('arme')
+res2 = T.insert('armure')
+res2 = T.insert('alarme')
+
+res2 = T.insert('toto')
+res2 = T.insert('alr')
+
+print('fini')
+collects = T.collectAllWords()
+autocomplete = T.autocomplete('arm')
 print('fini')

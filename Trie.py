@@ -11,11 +11,9 @@ class Trie:
         self.root = Node()
 
     def search(self, word):
-        #TODO
         i = 0
         ptr = self
         while i < len(word):
-            #print(i, len(word))
             if word[i] in ptr.root.children:
                 ptr = ptr.root.children[word[i]]
                 i += 1
@@ -24,12 +22,9 @@ class Trie:
             elif len(ptr.root.children.keys()) == 0:
                 return None
             else:
-                ##print('toto')
                 for key in ptr.root.children:
                     w = ptr.root.children[key].search(word)
-                    #print(w, key)
                     if w != None:
-                        #print(key)
                         return w
                 break
         
@@ -37,7 +32,6 @@ class Trie:
         
     
     def insert(self, word):
-        #TODO
         i = len(word)-1
         ptr = self
        
@@ -47,22 +41,33 @@ class Trie:
                 ptr = look_up
                 break
             i-= 1
-        #return None
         i = i +1 
         while i < len(word):
             ptr.root.children[word[i]] = Trie()
             ptr = ptr.root.children[word[i]]
             i+=1
+        ptr.end = '*'
         
   
         return ptr
         
     def collectAllWords(self, node=None, word="", words=[]):
         #TODO
-        pass
+        ptr = node
+        if ptr == None:
+            ptr = self
+        if hasattr(ptr, 'end'):
+            words.append(word)
+        if len( ptr.root.children) == 0:
+            return words
+        else:
+            for key in ptr.root.children:
+                next = ptr.root.children[key]
+                words = next.collectAllWords(None, word + key, words)
+        return words
 
     def autocomplete(self, prefix):
         currentNode = self.search(prefix)
         if not currentNode:
             return None
-        return self.collectAllWords(currentNode)
+        return self.collectAllWords(currentNode, '', [])
