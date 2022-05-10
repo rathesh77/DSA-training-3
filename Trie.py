@@ -70,4 +70,4 @@ class Trie:
         currentNode = self.search(prefix)
         if not currentNode:
             return None
-        return self.collectAllWords(currentNode, '', [])
+        return self.collectAllWords(currentNode, prefix, [])
