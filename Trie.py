@@ -1,10 +1,4 @@
 from Node import *
-# begin et end inclus
-def slice(str, begin, end):
-    newstr = ''
-    for i in range (begin, end +1):
-        newstr += str[i]
-    return newstr
 
 class Trie:
     def __init__(self):
