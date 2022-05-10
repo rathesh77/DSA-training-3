@@ -39,8 +39,10 @@ class Trie:
         ptr.end = '*'
         return ptr
      
-    def collectAllWords(self, node=None, word="", words=[]):
+    def collectAllWords(self, node=None, word="", words=None):
         #TODO
+        if words == None:
+            words = []
         ptr = node
         if ptr == None:
             ptr = self
@@ -58,4 +60,4 @@ class Trie:
         currentNode = self.search(prefix)
         if not currentNode:
             return None
-        return self.collectAllWords(currentNode, prefix, [])
+        return self.collectAllWords(currentNode, prefix)
