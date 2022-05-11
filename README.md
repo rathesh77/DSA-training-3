@@ -2,6 +2,6 @@
 
 Instructions: 
 
-Lancer le fichier main.py via la commande ```py main.py```
+Il y a un fichier main.py qui sert de point d'entrée au programme. Ce fichier permet notamment de tester les differentes fonctions implementées dans la classe Tri. Modifiez le à votre guise.
 
-Vous pouvez egalement modifier ce fichier pour tester les differentes fonctions de la classe Trie
+Lancer le fichier main.py via la commande ```py main.py```
