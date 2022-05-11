@@ -1,5 +1,14 @@
 from Node import *
 
+def sort_words_by_weight(words):
+    for i in range (0,len(words)):
+        for j in range (i+1, len(words)):
+            if words[i]['weight'] < words[j]['weight']:
+                temp = words[i]
+                words[i] = words[j]
+                words[j] = temp
+    return words   
+
 class Trie:
     def __init__(self):
         self.root = Node()
@@ -13,6 +22,8 @@ class Trie:
         while i < len(word) and word[i] in ptr.root.children:
             ptr = ptr.root.children[word[i]]
             if i == len(word) - 1:
+                if hasattr(ptr, 'end'):
+                    ptr.weight += 1
                 return ptr
             i += 1
                 
@@ -36,6 +47,7 @@ class Trie:
             i+=1
         # On marque la fin de la chaine
         ptr.end = '*'
+        ptr.weight = 0
         return ptr
      
     def collectAllWords(self, node=None, word="", words=None):
@@ -47,17 +59,14 @@ class Trie:
             ptr = self
         #Si on est arrivé à une profondeur avec le flag end, on ajoute le mot à notre tableau
         if hasattr(ptr, 'end'):
-            words.append(word)
-        # S'il ne reste plus de profondeur restant, c'est à dire aucun caractere à parcourir, on retourne 
-        # le tableau des mots
-        if len( ptr.root.children) == 0:
-            return words
+            words.append({'word': word,'weight': ptr.weight})
+
         # sinon, on parcours les noeuds enfants en recurant
         else:
             for key in ptr.root.children:
                 next = ptr.root.children[key]
                 words = next.collectAllWords(None, word + key, words)
-        return words
+        return sort_words_by_weight(words)
 
     def autocomplete(self, prefix):
         currentNode = self.search(prefix)
